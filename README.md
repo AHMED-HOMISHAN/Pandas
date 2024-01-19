@@ -1,4 +1,79 @@
-# Attributes
+
+# Let's go through each part of the code and explain what it does:
+
+```python
+import pandas as pd
+df = pd.read_csv('Data.csv')
+```
+- Imports the pandas library and reads a CSV file named 'Data.csv' into a DataFrame called `df`.
+
+```python
+print(df.to_string()) 
+```
+- Prints the entire DataFrame as a string.
+
+```python
+df.head()
+```
+- Displays the first few rows of the DataFrame `df` to provide a quick overview of the data.
+
+```python
+df.tail()
+```
+- Displays the last few rows of the DataFrame `df`.
+
+```python
+df.info()
+```
+- Prints a concise summary of the DataFrame, including information on data types, non-null values, and memory usage.
+
+```python
+df["raisedhands"].fillna(df["raisedhands"].mode()[0], inplace=True)
+```
+- Fills missing values in the "raisedhands" column with the mode (most frequently occurring value) of that column. The `inplace=True` parameter modifies the DataFrame in place.
+
+```python
+df["raisedhands"].mean()
+```
+- Calculates the mean of the "raisedhands" column.
+
+```python
+df["raisedhands"].mode()
+```
+- Finds the mode (most frequently occurring value) of the "raisedhands" column.
+
+```python
+df.index
+```
+- Returns the index of the DataFrame.
+
+```python
+for index in df.index:
+    if df.loc[index, "VisITedResources"] > 100:
+        print(df.loc[index])
+```
+- Iterates through the rows of the DataFrame and prints the rows where the "VisITedResources" column value is greater than 100.
+
+```python
+for i in df.index:
+    if df.loc[i, "VisITedResources"] > 100:
+        df.loc[i, "VisITedResources"] = df["VisITedResources"].mode()[0]
+```
+- Similar to the previous loop, but in this case, it replaces the values in the "VisITedResources" column that are greater than 100 with the mode of that column.
+
+```python
+print(df.duplicated())
+```
+- Checks for duplicate rows in the DataFrame and prints a boolean Series indicating whether each row is a duplicate.
+
+```python
+df.drop_duplicates(inplace=True)
+```
+- Removes duplicate rows from the DataFrame in place.
+
+In summary, this script loads a CSV file into a DataFrame, handles missing values, explores some basic statistics, identifies and modifies outliers in one column, and removes duplicate rows.
+
+# Attributes Od DataSet
 1 Gender - student's gender (nominal: 'Male' or 'Female’)
 
 2 Nationality- student's nationality (nominal:’ Kuwait’,’ Lebanon’,’ Egypt’,’ SaudiArabia’,’ USA’,’ Jordan’,’
